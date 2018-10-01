@@ -25,7 +25,8 @@ function [y]=lagrange(x,x0,y0)
 endfunction
 xi=[-1:0.2:1];
 yi=[0.0385,0.0588,0.1000,0.2000,0.5000,1.0000,0.5000,0.2000,0.1000,0.0588,0.0385]; 
-x=[-1:0.01:1];
+x=[-2:0.01:1];
+n=size(xi);
 y=lagrange(x,xi,yi);
 figure(12)
 plot(x,y)
