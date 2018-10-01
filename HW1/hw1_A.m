@@ -15,7 +15,7 @@ function [y_ref] = lagrange (x_ref, x, y, nsize)
     figure(j)
     plot(x_ref,Lj)
     xlabel("x");
-    lname = strcat("L", dec2base(j, 10), "(x)");
+    lname = strcat("L", dec2base(j, 10), "(x)"); #create name of Lj(x)
     ylabel(lname);
     legend(lname);
     y_ref += Lj * y(j);
@@ -48,8 +48,9 @@ endfor
 #-------------draw P(x)----------------
 x_ref = -1 : 0.01 : 1;
 px = lagrange(x_ref, xi, yi, data_size);
-figure(12)
+figure(data_size+1)
 plot(x_ref, px)
 xlabel("x");
 ylabel("P(x)");
+legend("P(x)");
 #-------------------------------------
