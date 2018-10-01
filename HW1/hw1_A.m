@@ -46,7 +46,7 @@ endfor
 #--------------------------------------
 
 #-------------draw P(x)----------------
-x_ref = -1 : 0.01 : 1;
+x_ref = xi(1) : 0.01 : xi(data_size);
 px = lagrange(x_ref, xi, yi, data_size);
 figure(data_size+1)
 plot(x_ref, px)
