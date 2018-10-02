@@ -10,7 +10,7 @@ function [y_ref] = lagrange (x_ref, x, y, nsize)
       if i == j 
         continue
       endif
-      Lj .*= (x_ref - x(i)) / (x(j) - x(i)); #.*= means do *= to every element
+      Lj .*= (x_ref - x(i)) / (x(j) - x(i));#.*= means do *= to every element
     endfor
     figure(j) #name a diagram
     plot(x_ref,Lj) #draw the diagram
@@ -25,7 +25,7 @@ endfunction
 
 #-----------GET DATA-------------------
 #read the data in hw1AB
-rawdata = textread("hw1AB.dat");
+rawdata = textread("hw1CD.dat");
 
 #transfrom the data into a matrix
 point = reshape(rawdata, 2, []);
