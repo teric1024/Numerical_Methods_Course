@@ -5,7 +5,7 @@ clc
 #create a form like AX = B. three variables are matrix.
 #Let g''(x_i) be X
 
-function [DDg] = csi_free_runout(x_ref, x, y, nsize) 
+function [DDg] = csi_free_runout(x, y, nsize) 
   #nsize = N + 1
   # when it refers to x, y, delta
   # i(in textbook) = (i+1) (here)
@@ -52,19 +52,27 @@ function [DDg] = csi_free_runout(x_ref, x, y, nsize)
   endfor
   
   #-----------cubic spline interpolation drawing-------
-  y_ref = 0;
+  figure(1)
+  x_plot = [];
+  y_plot = [];
   for i = 1 : nsize - 1
+    x_ref = x(i) : 0.01 : x(i+1);
     y_ref .+= DDg(i)/6 * ( (x(i+1)-x_ref).^3 / delta(i) - delta(i)*(x(i+1)-x_ref))...
         + DDg(i+1)/6 * ( (x_ref-x(i)).^3 / delta(i) - delta(i)*(x_ref-x(i)))...
         + y(i) * ( x(i+1) - x_ref )/delta(i) + y(i+1) * ( x_ref - x(i) )/delta(i);
-    figure(i); #name a file
-    plot(x_ref, y_ref); #draw the diagram
-    xlabel("x"); #name the x axis
-    lname = strcat("g", dec2base(i, 10), "(x)"); #create name of Lj(x)
-    ylabel(lname); #name the y axis
-    legend(lname); #name the line
-    title(lname); #name the diagram
+    x_plot = [x_plot, x_ref];
+    y_plot = [y_plot, y_ref];
+    if(i == 1)
+      hold on;
+    elseif (i == nsize -1)
+      hold off;
+    endif
   endfor
+  plot(x_plot, y_plot)
+  xlabel("x"); #name the x axis
+  ylabel("g(x)"); #name the y axis
+  legend("g(x)"); #name the line
+  title("Cubic Spline Interpolation"); #name the diagram
   #----------------------------------------------------
 endfunction
 #---------------------------------------------------------
@@ -92,5 +100,4 @@ for i = 1:data_size
   yi(i) = point(2,i+1);
 endfor
 #--------------------------------------
-x_ref = xi(1) : 0.01 : xi(data_size);
-DDg = csi_free_runout(x_ref, xi, yi, data_size);
+DDg = csi_free_runout(xi, yi, data_size);
