@@ -6,18 +6,21 @@ function [y_ref] = lagrange (x_ref, x, y, nsize)
   #the definition of L(x)
   for j = 1:nsize
     Lj = 1;
+    Ljx = ones(1,nsize);
     for i = 1:nsize
       if ( i == j )
         continue
       endif
       Lj .*= (x_ref - x(i)) / (x(j) - x(i)); #.*= means do *= to every element
+      Ljx .*=(x - x(i)) / (x(j) - x(i));
     endfor
     figure(j); #name a file
-    plot(x_ref,Lj); #draw the diagram
+    plot(x_ref,Lj,x,Ljx,"b+"); #draw the diagram
     xlabel("x"); #name the x axis
     lname = strcat("L", dec2base(j, 10), "(x)"); #create name of Lj(x)
+    pname = strcat("(x0,",lname,")"); #create name of known point
     ylabel(lname); #name the y axis
-    legend(lname); #name the line
+    legend(lname,pname); #name the line
     title(lname); #name the diagram
     y_ref += Lj * y(j); #create P(x_ref)
   endfor
@@ -50,9 +53,9 @@ endfor
 x_ref = xi(1) : 0.01 : xi(data_size);
 px = lagrange(x_ref, xi, yi, data_size);
 figure(data_size+1)
-plot(x_ref, px)
+plot(x_ref, px, xi, yi, "b+")
 xlabel("x");
 ylabel("P(x)");
-title("P(x)");
-legend("P(x)");
+title("Lagrange Polynomial Interpolation");
+legend("P(x)","(xi,yi)");
 #-------------------------------------

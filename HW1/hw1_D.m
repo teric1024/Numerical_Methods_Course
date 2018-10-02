@@ -58,21 +58,17 @@ function [DDg] = csi_free_runout(x, y, nsize)
   for i = 1 : nsize - 1
     x_ref = x(i) : 0.01 : x(i+1);
     y_ref = [];
+    #in the textbook P6 eq.(1.6)
     y_ref = DDg(i)/6 * ( (x(i+1)-x_ref).^3 / delta(i) - delta(i)*(x(i+1)-x_ref))...
         + DDg(i+1)/6 * ( (x_ref-x(i)).^3 / delta(i) - delta(i)*(x_ref-x(i)))...
         + y(i) * ( x(i+1) - x_ref )/delta(i) + y(i+1) * ( x_ref - x(i) )/delta(i);
-    x_plot = [x_plot, x_ref];
-    y_plot = [y_plot, y_ref];
-    if(i == 1)
-      hold on;
-    elseif (i == nsize -1)
-      hold off;
-    endif
+    x_plot = [x_plot, x_ref]; #connect all the x
+    y_plot = [y_plot, y_ref]; #connect all the y
   endfor
-  plot(x_plot, y_plot)
+  plot(x_plot, y_plot, x,y, "b*") #b* means point pattern is blue *
   xlabel("x"); #name the x axis
   ylabel("g(x)"); #name the y axis
-  legend("g(x)"); #name the line
+  legend("g(x)", "(xi,yi)"); #name the line
   title("Cubic Spline Interpolation"); #name the diagram
   #----------------------------------------------------
 endfunction
