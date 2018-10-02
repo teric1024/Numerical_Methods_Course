@@ -35,8 +35,8 @@ psize = size(point);
 data_size = psize(2)-1;
 
 #declare x and y to store all the point(point known already)
-xi = 1 : 1 : data_size;
-yi = 1 : 1 : data_size;
+xi = zeros(1, data_size);
+yi = zeros(1, data_size);
 
 #load the data onto xj and yj
 for i = 1:data_size

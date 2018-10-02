@@ -7,17 +7,18 @@ function [y_ref] = lagrange (x_ref, x, y, nsize)
   for j = 1:nsize
     Lj = 1;
     for i = 1:nsize
-      if i == j 
+      if ( i == j )
         continue
       endif
       Lj .*= (x_ref - x(i)) / (x(j) - x(i)); #.*= means do *= to every element
     endfor
-    figure(j) #name a diagram
-    plot(x_ref,Lj) #draw the diagram
+    figure(j); #name a file
+    plot(x_ref,Lj); #draw the diagram
     xlabel("x"); #name the x axis
     lname = strcat("L", dec2base(j, 10), "(x)"); #create name of Lj(x)
     ylabel(lname); #name the y axis
-    legend(lname); #name the a line
+    legend(lname); #name the line
+    title(lname); #name the diagram
     y_ref += Lj * y(j); #create P(x_ref)
   endfor
 endfunction
@@ -35,8 +36,8 @@ psize = size(point);
 data_size = psize(2)-1;
 
 #declare x and y to store all the point(point known already)
-xi = 1 : 1 : data_size;
-yi = 1 : 1 : data_size;
+xi = zeros(1, data_size);
+yi = zeros(1, data_size);
 
 #load the data onto xj and yj
 for i = 1:data_size
@@ -52,5 +53,6 @@ figure(data_size+1)
 plot(x_ref, px)
 xlabel("x");
 ylabel("P(x)");
+title("P(x)");
 legend("P(x)");
 #-------------------------------------
