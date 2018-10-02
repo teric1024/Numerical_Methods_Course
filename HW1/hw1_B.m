@@ -70,6 +70,7 @@ function [DDg] = csi_free_runout(x, y, nsize)
   ylabel("g(x)"); #name the y axis
   legend("g(x)", "(xi,yi)"); #name the line
   title("Cubic Spline Interpolation"); #name the diagram
+  print("-dpng","B_Cubic_Spline_Interpolation");#output file as Cubic....png
   #----------------------------------------------------
 endfunction
 #---------------------------------------------------------
