@@ -82,7 +82,7 @@ endfunction
 
 #-----------GET DATA-------------------
 #read the data in hw1AB
-rawdata = textread("hw1CD.dat");
+rawdata = textread("hw1AB.dat");
 
 #transfrom the data into a matrix
 point = reshape(rawdata, 2, []);
