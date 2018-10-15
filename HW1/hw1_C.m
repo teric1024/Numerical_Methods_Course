@@ -17,12 +17,12 @@ function [y_ref] = lagrange (x_ref, x, y, nsize)
     figure(j); #name a file
     plot(x_ref,Lj,x,Ljx,"r*"); #draw the diagram
     xlabel("x"); #name the x axis
-    lname = strcat("L", dec2base(j, 10), "(x)"); #create name of Lj(x)
+    lname = strcat("L", dec2base(j-1, 10), "(x)"); #create name of Lj(x)
     pname = strcat("(x0,",lname,")"); #create name of known point
     ylabel(lname); #name the y axis
     legend(lname,pname); #name the line
     title(lname); #name the diagram
-    print("-dpng",strcat("C_L", dec2base(j, 10), "(x)")); #output file as Lj(x).png
+    print("-dpng",strcat("C_L", dec2base(j-1, 10), "(x)")); #output file as Lj(x).png
     y_ref += Lj * y(j); #create P(x_ref)
   endfor
 endfunction
