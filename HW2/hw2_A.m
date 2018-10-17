@@ -21,12 +21,17 @@ sec_err = log10(abs(exact_diff - sec_cen_diff));
 four_err = log10(abs(exact_diff - four_cen_diff));
 logh = log10(h);
 
+plot(logh, forward_err, "o");
+hold
+plot(logh, sec_err, "*");
+plot(logh, four_err, "+k");
+legend("1st order", "2nd order", "4th order");
 plot(logh, forward_err, "b");
 #legend("1st order");
-hold
 plot(logh, sec_err, "r");
 #legend("2nd order");
 plot(logh, four_err, "k");
 #legend("4th order");
-xlabel("h");
+xlabel("h -- grid spacing");
 ylabel("error");
+title("A.2");
