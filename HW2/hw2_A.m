@@ -25,7 +25,7 @@ plot(logh, forward_err, "o");
 hold
 plot(logh, sec_err, "*");
 plot(logh, four_err, "+k");
-legend("1st order", "2nd order", "4th order");
+legend("1st order", "2nd order", "4th order",'Location','northwest');
 plot(logh, forward_err, "b");
 #legend("1st order");
 plot(logh, sec_err, "r");
@@ -35,3 +35,4 @@ plot(logh, four_err, "k");
 xlabel("h -- grid spacing");
 ylabel("error");
 title("A.2");
+print("-dpng","A_2");

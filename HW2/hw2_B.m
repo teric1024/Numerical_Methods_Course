@@ -21,3 +21,4 @@ legend("Exact", "2nd O Central","4th O Central", "4th O Pade");
 xlabel("hk");
 ylabel("hk'");
 title("B.2");
+print("-dpng","B_2");

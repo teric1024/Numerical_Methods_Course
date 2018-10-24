@@ -49,3 +49,4 @@ legend("f'(x_j)", "f'(x)");
 title("4th Order Pade Differentiation");
 xlabel("x");
 ylabel("Derivative");
+print("-dpng", "C_2");

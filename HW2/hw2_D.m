@@ -11,12 +11,13 @@ kh = 2 * pi / N * n;
 kh2_exact = kh.^2;
 kh2_D1 = 2- 2 * cos(kh);
 #kh2_D3 is not completed
-kh2_D3 = 12*(1-cos(kh)) ./ (4*cos(kh) + 5);
+kh2_D3 = 12*(1-cos(kh)) ./ (cos(kh) + 5);
 
-plot(kh,kh2_exact,"--k");
+plot(kh,kh2_exact,"k");
 hold
 plot(kh,kh2_D1,":b");
-plot(kh,kh2_D3,"r");
-legend("Exact", "D.1","D.3");
+plot(kh,kh2_D3,"--r");
+legend("Exact", "central difference","Pade scheme","location", "northwest");
 xlabel("kh");
 ylabel("k'^2h^2");
+print("-dpng", "D_4");
