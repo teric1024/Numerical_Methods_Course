@@ -1,1 +1,1 @@
-clear allclctheda = 0:0.1:6.3;y = zeros(1, 63);for k = 1:63  y(k) = exp(j*theda(k));endforplot(real(y), imag(y))
+clear allclct=linspace(0,2*pi);for j=2:100  p=[1/4 1/2 1 1 1-exp(i*t(j))];  plot(roots(p), 'x');  hold onend
